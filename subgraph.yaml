@@ -1,0 +1,35 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: vAPE
+    network: mainnet
+    source:
+      address: "0x917B78b76CA7fD68e9B6E4b1EBFCb13Cc0FB4650"
+      abi: vAPE
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - TaxOfficeTransferred
+        - Transfer
+      abis:
+        - name: vAPE
+          file: ./abis/vAPE.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: OperatorTransferred(indexed address,indexed address)
+          handler: handleOperatorTransferred
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TaxOfficeTransferred(address,address)
+          handler: handleTaxOfficeTransferred
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
