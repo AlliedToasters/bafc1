@@ -1,6 +1,83 @@
-type ExampleEntity @entity {
+type vapeHolder @entity {
   id: ID!
-  count: BigInt!
-  owner: Bytes! # address
-  spender: Bytes! # address
+  balance: BigInt!
+  bapeBalance: BigInt!
+  yugapeBalance: BigInt!
+  vapeApeBalance: BigInt!
+  vapeWethBalance: BigInt!
+  bapeVapeBalance: BigInt!
+  bapeWethBalance: BigInt!
+  tokensStaked: [stakeToken!]! @derivedFrom(field: "staker")
+  tokensStakedAsSender: [stakeToken!]! @derivedFrom(field: "sender")
+  tokensWithdrawn: [withdrawToken!]! @derivedFrom(field: "to")
+  tokensWithdrawnAsSender: [withdrawToken!]! @derivedFrom(field: "sender")
+  tokensRewarded: [rewardToken!]! @derivedFrom(field: "to")
+  tokensRewardedAsSender: [rewardToken!]! @derivedFrom(field: "sender")
+  vapeRewarded: BigInt!
+  bapeRewarded: BigInt!
+  weiSpentOnGas: [spendGas!]! @derivedFrom(field: "spender")
+  reciepts: [tran!]! @derivedFrom(field: "to")
+  spends: [tran!]! @derivedFrom(field: "from")
 }
+
+type tran @entity {
+  id: ID!
+  token: String!
+  amount: BigInt!
+  to: vapeHolder!
+  from: vapeHolder!
+  transactionId: String!
+  blockHeight: BigInt!
+  timestamp: BigInt!
+  sender: vapeHolder!
+}
+
+type stakeToken @entity {
+  id: ID!
+  token: String!
+  amount: BigInt!
+  staker: vapeHolder!
+  poolId: String!
+  poolContract: String!
+  blockHeight: BigInt!
+  timestamp: BigInt!
+  transactionId: String!
+  sender: vapeHolder!
+}
+
+type withdrawToken @entity {
+  id: ID!
+  token: String!
+  amount: BigInt!
+  to: vapeHolder!
+  poolId: String!
+  rewardContract: String!
+  blockHeight: BigInt!
+  timestamp: BigInt!
+  transactionId: String!
+  sender: vapeHolder!
+}
+
+type rewardToken @entity {
+  id: ID!
+  to: vapeHolder!
+  amount: BigInt!
+  poolId: String!
+  rewardContract: String!
+  blockHeight: BigInt!
+  timestamp: BigInt!
+  transactionId: String!
+  sender: vapeHolder!
+}
+
+type spendGas @entity {
+  id: ID!
+  spender: vapeHolder!
+  gasUsed: BigInt!
+  gasPrice: BigInt!
+  blockHeight: BigInt!
+  timestamp: BigInt!
+  transactionId: String!
+  sender: vapeHolder!
+}
+

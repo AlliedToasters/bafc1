@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,6 +8,7 @@ dataSources:
     source:
       address: "0x917B78b76CA7fD68e9B6E4b1EBFCb13Cc0FB4650"
       abi: vAPE
+      startBlock: 14464952
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -22,14 +23,268 @@ dataSources:
         - name: vAPE
           file: ./abis/vAPE.json
       eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-        - event: OperatorTransferred(indexed address,indexed address)
-          handler: handleOperatorTransferred
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: TaxOfficeTransferred(address,address)
-          handler: handleTaxOfficeTransferred
+        # - event: Approval(indexed address,indexed address,uint256)
+        #   handler: handleApproval
+        # - event: OperatorTransferred(indexed address,indexed address)
+        #   handler: handleOperatorTransferred
+        # - event: OwnershipTransferred(indexed address,indexed address)
+        #   handler: handleOwnershipTransferred
+        # - event: TaxOfficeTransferred(address,address)
+        #   handler: handleTaxOfficeTransferred
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: ./src/erc20Mappings/vapeMapping.ts
+  - kind: ethereum
+    name: boardApe
+    network: mainnet
+    source:
+      address: "0x0c7e2955688CDFc4887Aa26c0ea0c4FBAE4F7BD9"
+      abi: boardApe
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: boardApe
+          file: ./abis/boardApe.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20Mappings/bapeMapping.ts
+  - kind: ethereum
+    name: yugApe
+    network: mainnet
+    source:
+      address: "0x7B8219B29BDcacF90218F2CBC46b6A87E8fC5dc3"
+      abi: yugApe
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: yugApe
+          file: ./abis/yugApe.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20Mappings/yugapeMapping.ts
+  - kind: ethereum
+    name: vapeApeLP
+    network: mainnet
+    source:
+      address: "0xc704b7d4cafc240f6f689a126cef4eb1f784b481"
+      abi: vapeApeLP
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: vapeApeLP
+          file: ./abis/vapeApeLP.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20Mappings/vapeApeMapping.ts
+  - kind: ethereum
+    name: vapeWethLP
+    network: mainnet
+    source:
+      address: "0x5CFc0eD225FF2b464364F54f3091C12d8e7dF0e9"
+      abi: vapeWethLP
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: vapeWethLP
+          file: ./abis/vapeWethLP.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20Mappings/vapeWethMapping.ts
+  - kind: ethereum
+    name: vapeBapeLP
+    network: mainnet
+    source:
+      address: "0x63e04Ecd6aBb9E5453875771C51828CF8E74df5B"
+      abi: vapeBapeLP
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: vapeBapeLP
+          file: ./abis/vapeBapeLP.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20Mappings/vapeBapeMapping.ts
+  - kind: ethereum
+    name: bapeWethLP
+    network: mainnet
+    source:
+      address: "0xaEB888501DDf704aa27b8b98a7232fBAf04622A0"
+      abi: bapeWethLP
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - OperatorTransferred
+        - OwnershipTransferred
+        - Transfer
+      abis:
+        - name: bapeWethLP
+          file: ./abis/bapeWethLP.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20Mappings/bapeWethMapping.ts
+  - kind: ethereum
+    name: genRewardPool
+    network: mainnet
+    source:
+      address: "0x67B93E51633e6c19D6bd09f19a68e684F5a94DfB"
+      abi: genRewardPool
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - EmergencyWithdraw
+        - RewardPaid
+        - Withdraw
+      abis:
+        - name: genRewardPool
+          file: ./abis/genRewardPool.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        # - event: EmergencyWithdraw(indexed address,indexed uint256,uint256)
+        #   handler: handleEmergencyWithdraw
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/rewardPoolMappings/genRewardPool.ts
+  - kind: ethereum
+    name: apeRewardPool
+    network: mainnet
+    source:
+      address: "0xB9Dd436aa27e48DB0bb0cF2d3665E18572E44A04"
+      abi: apeRewardPool
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - EmergencyWithdraw
+        - RewardPaid
+        - Withdraw
+      abis:
+        - name: apeRewardPool
+          file: ./abis/apeRewardPool.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        # - event: EmergencyWithdraw(indexed address,indexed uint256,uint256)
+        #   handler: handleEmergencyWithdraw
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/rewardPoolMappings/apeRewardPool.ts
+  - kind: ethereum
+    name: boardApeRewardPool
+    network: mainnet
+    source:
+      address: "0xc5cad90f4bc98ef559f1853a6de11fe7c54dc956"
+      abi: boardApeRewardPool
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - EmergencyWithdraw
+        - RewardPaid
+        - Withdraw
+      abis:
+        - name: boardApeRewardPool
+          file: ./abis/boardApeRewardPool.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        # - event: EmergencyWithdraw(indexed address,indexed uint256,uint256)
+        #   handler: handleEmergencyWithdraw
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/rewardPoolMappings/boardApeRewardPool.ts
+  - kind: ethereum
+    name: anomalyRewardPool
+    network: mainnet
+    source:
+      address: "0x488f61614d62506757119866AE7B02145970f159"
+      abi: anomalyRewardPool
+      startBlock: 14464952
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+        - EmergencyWithdraw
+        - RewardPaid
+        - Withdraw
+      abis:
+        - name: anomalyRewardPool
+          file: ./abis/anomalyRewardPool.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed uint256,uint256)
+          handler: handleDeposit
+        # - event: EmergencyWithdraw(indexed address,indexed uint256,uint256)
+        #   handler: handleEmergencyWithdraw
+        - event: RewardPaid(indexed address,uint256)
+          handler: handleRewardPaid
+        - event: Withdraw(indexed address,indexed uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/rewardPoolMappings/anomalyRewardPool.ts
