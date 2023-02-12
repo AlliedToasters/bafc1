@@ -25,12 +25,17 @@ export function handleTransfer(event: Transfer): void {
   trackGas(event)
 }
 
-function saveTran (event: Transfer, token: string): void {
+function getTranId (event: Transfer): string {
   let txnString = event.transaction.hash.toHexString()
-  let tokenString = token
+  let tokenString = event.params.value.toHexString()
   let fromString = event.params.from.toHexString()
   let toString = event.params.to.toHexString()
-  let transfer_id = txnString + tokenString + fromString + toString
+  let transfer_id = txnString + "_" + tokenString + "_" + fromString + "_" + toString
+  return transfer_id
+}
+
+function saveTran (event: Transfer, token: string): void {
+  let transfer_id = getTranId(event)
   let transfer = new tran(transfer_id)
   transfer.amount = event.params.value
   transfer.token = token
